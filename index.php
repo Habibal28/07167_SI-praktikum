@@ -1,4 +1,7 @@
 <?php
+
+//koneksi database
+require_once("Koneksi.php");
 //Routing dari URL ke Obyek Class PHP
 if (isset($_GET['page']) && isset($_GET['aksi'])) {
     $page = $_GET['page']; // Berisi nama page
@@ -9,7 +12,7 @@ if (isset($_GET['page']) && isset($_GET['aksi'])) {
         if ($aksi == 'view') {
             require_once("View/auth/index.php");
         } else if ($aksi == 'loginAslab') {
-            require_once("View/auth/login_aslab.php");
+          require_once("View/auth/login_aslab.php");
         } else if ($aksi == 'loginPraktikan') {
             require_once("View/auth/login_praktikan.php");
         } else if ($aksi == 'authAslab') {
