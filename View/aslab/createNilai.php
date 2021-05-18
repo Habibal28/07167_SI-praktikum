@@ -17,7 +17,7 @@
                 <div class=" card-header">
                     <h2>Create Nilai</h2>
                     <!-- id Diganti saat modul 2 -->
-                    <a href="index.php?page=aslab&aksi=nilai&id=#" class="btn btn-info float-right">Kembali</a>
+                     <a href="index.php?page=aslab&aksi=nilai&id=<?= $_GET['id'] ?>" class="btn btn-info float-right">Kembali</a>
                 </div>
                 <div class="card-body">
                     <form action="index.php?page=aslab&aksi=storeNilai&id=" method="POST">
