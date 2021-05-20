@@ -24,7 +24,7 @@
                     <table class="table table-striped table-bordered">
                         <!-- Diganti saat modul 2 -->
                         <thead>
-                            <tr>
+                             <tr>
                              <?php foreach ($modul as $row) :?>
                                 <td><?= $row['namaModul'] ?></td>
                              <?php endforeach; ?>

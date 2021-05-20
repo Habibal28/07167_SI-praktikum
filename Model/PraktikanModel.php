@@ -102,4 +102,68 @@ class PraktikanModel
      extract($nilai);
      require_once("View/praktikan/nilaiPraktikan.php");
  }
-}
+
+    /**
+         * Function update berfungsi untuk update data praktikan pada database
+         * @param String nama berisi nama praktikan
+         * @param String npm berisi npm praktikan
+         * @param String password berisi password praktikan
+         * @param String no_hp berisi nomor telepon
+         * @param Intefer id berisi id praktikan
+         */
+        public function prosesUpdate($nama,$npm,$password,$no_hp,$id){
+            $sql = "UPDATE praktikan SET nama='$nama', npm='$npm', password='$password', nomor_hp='$no_hp' WHERE id='$id'";
+            $query = koneksi()->query($sql);
+            return $query;
+        }
+        /**
+         * Function updae berfungsi untuk menyimpah hasil edit
+         */
+        public function update(){
+            $id = $_POST['id'];
+            $nama = $_POST['nama'];
+            $npm = $_POST['npm'];
+            $no_hp = $_POST['no_hp'];
+            $password = $_POST['password'];
+            if($this->prosesUpdate($nama,$npm,$password,$no_hp,$id)){
+                header("location: index.php?page=praktikan&aksi=view&pesan=Berhasil Ubah Data");
+            }else{
+                header("location: index.php?page=praktikan&aksi=edit&pesan=Gagal Ubah Data");
+            }
+        }
+        /**
+         * Function edit berfungsi untuk menampilkan form edit
+         */
+        public function edit(){
+            $id = $_SESSION['praktikan']['id'];
+            $data = $this->get($id);
+            extract($data);
+            require_once("view/praktikan/edit.php");
+        }
+        /**
+         * Function StorePraktikum berfungsi untuk input data daftar praktikum ke database
+         * @param Integer idPraktikan berisi id praktikan
+         * @param Integerr idPraktikum berisi id praktikum
+         */
+        public function prosesStorePraktikum($idPraktikan,$idPraktikum){
+            $sql="INSERT INTO daftarprak(praktikan_id,praktikum_id,status) VALUES($idPraktikan,$idPraktikum,0)";
+            $query = koneksi()->query($sql);
+            return $query;        
+        }
+        /**
+         * Function storePraktikan berfungsi untuk memproses data praktikum yang dipilih untuk di tambahkan
+         */
+        public function storePraktikum(){
+            $idPraktikum = $_POST['praktikum'];
+            $idPraktikan = $_SESSION['praktikan']['id'];
+            if($this->prosesStorePraktikum($idPraktikan,$idPraktikum)){
+                header("location: index.php?page=praktikan&aksi=praktikum&pesan=Berhasil daftar Praktikum");
+            }else{
+                header("location: index.php?page=praktikan&aksi=daftarPraktikum&pesan=Gagal daftar Praktikum");
+            }
+        }
+    }
+    // $tes = new PraktikanModel();
+    // var_export($tes->prosesStorePraktikum(1,1));
+    // die();
+?>

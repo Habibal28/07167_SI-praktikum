@@ -51,11 +51,11 @@ class DaftarPrakModel{
      */
     public function verif(){
         $id = $_GET['id'];
-        $idAslab = $_GET['aslab']['id'];
+        $idAslab = $_SESSION['aslab']['id'];
         if ($this->prosesVerif($id,$idAslab)){
-            header("location : index.php?page=daftarprak&aksi=view&pesan=Berhasil Verif Praktikan");
+            header("location: index.php?page=daftarprak&aksi=view&pesan=Berhasil Verif Praktikan");
         }else{
-            header("location : index.php?page=daftarprak&aksi=view&pesan=Gagal Verif Praktikan");
+            header("location: index.php?page=daftarprak&aksi=view&pesan=Gagal Verif Praktikan");
         }
     }
 
@@ -66,12 +66,14 @@ class DaftarPrakModel{
         $id = $_GET['id'];
         $idPraktikan = $_GET['idPraktikan'];
         if ($this->prosesUnVerif($id,$idPraktikan)){
-            header("location : index.php?page=daftarprak&aksi=view&pesan=Berhasil Un-Verif Praktikan");
+            header("location: index.php?page=daftarprak&aksi=view&pesan=Berhasil Un-Verif Praktikan");
         }else{
-            header("location : index.php?page=daftarprak&aksi=view&pesan=Gagal Un-Verif Praktikan");
+            header("location: index.php?page=daftarprak&aksi=view&pesan=Gagal Un-Verif Praktikan");
         }
     }
 }
-//$tes = new DaftarPrakModel();
-//var_export($tes->prosesVerif(2,1));
-//die();
+
+    // $tes = new daftarprakModel();
+    // var_export($tes->prosesUnVerif(1,1));
+    // die();
+?>
