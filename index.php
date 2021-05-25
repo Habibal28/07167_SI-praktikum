@@ -10,6 +10,14 @@ require_once("Model/ModulModel.php");
 require_once("Model/PraktikanModel.php");
 require_once("Model/PraktikumModel.php");
 
+/**memanggil Controller */
+require_once("Controller/AslabController.php");
+require_once("Controller/AuthController.php");
+require_once("Controller/DaftarPrakController.php");
+require_once("Controller/ModulController.php");
+require_once("Controller/PraktikanController.php");
+require_once("Controller/PraktikumController.php");
+
 //Routing dari URL ke Obyek Class PHP
 if (isset($_GET['page']) && isset($_GET['aksi'])) {
 
@@ -20,7 +28,7 @@ session_start();
 
     // require_once akan Dirubah Saat Modul 2
     if ($page == "auth") {
-        $auth = new AuthModel();
+        $auth = new AuthController();
         if ($aksi == 'view') {
             $auth->index();
         } else if ($aksi == 'loginAslab') {
@@ -44,7 +52,7 @@ session_start();
         require_once("View/menu/menu_aslab.php");
 
         if($_SESSION['role'] == 'aslab'){
-           $aslab = new AslabModel();
+           $aslab = new AslabController();
         if ($aksi == 'view') {
             $aslab->index();
         } else if ($aksi == 'nilai') {
@@ -63,7 +71,7 @@ session_start();
     } else if ($page == "praktikum") {
         require_once("View/menu/menu_aslab.php");
         if($_SESSION['role'] == 'aslab'){
-           $praktikum = new PraktikumModel();
+           $praktikum = new PraktikumController();
         if ($aksi == 'view') {
            $praktikum->index();
         } else if ($aksi == 'create') {
@@ -88,7 +96,7 @@ session_start();
     } else if ($page == "modul") {
         require_once("View/menu/menu_aslab.php");
         if($_SESSION['role'] == 'aslab'){
-           $modul = new ModulModel(); 
+           $modul = new ModulController(); 
         if ($aksi == 'view') {
             $modul->index();
         } else if ($aksi == 'create') {
@@ -106,7 +114,7 @@ session_start();
     } else if ($page == "praktikan") {
         require_once("View/menu/menu_praktikan.php");
         if($_SESSION['role'] == 'praktikan') {
-           $praktikan = new PraktikanModel();
+           $praktikan = new PraktikanController();
         if ($aksi == 'view') {
             $praktikan->index();
         } else if ($aksi == 'edit') {
@@ -131,7 +139,7 @@ session_start();
     } else if ($page == 'daftarprak') {
         require_once("View/menu/menu_aslab.php");
         if($_SESSION['role'] == 'aslab') {
-            $daftarprak = new DaftarPrakModel();
+            $daftarprak = new DaftarPrakController();
         if ($aksi == 'view') {
             $daftarprak->index();
         } else if ($aksi == 'verif') {
